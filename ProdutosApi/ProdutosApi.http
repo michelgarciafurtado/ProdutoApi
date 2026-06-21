@@ -1,0 +1,33 @@
+@ProdutosApi_HostAddress = http://localhost:5054
+
+POST {{ProdutosApi_HostAddress}}/api/produtos
+Accept: application/json
+Content-Type: application/json
+
+{
+        "Nome":"Porção de Batata",
+        "Descricao":"Porção de batata frita tipo palito",
+        "Preco":18.99,
+        "CategoriaId":1
+}
+###
+GET {{ProdutosApi_HostAddress}}/api/produtos
+Accept: application/json
+
+###
+
+GET {{ProdutosApi_HostAddress}}/api/produtos/3
+Accept: application/json
+
+###
+PUT {{ProdutosApi_HostAddress}}/api/produtos
+Accept: application/json
+Content-Type: application/json
+
+{
+        "Id":3,
+        "Nome":"Porção de Batata",
+        "Descricao":"Porção de batatas fritas tipo palito",
+        "Preco":18.99,
+        "CategoriaId":2
+}

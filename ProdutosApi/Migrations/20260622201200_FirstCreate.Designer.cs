@@ -11,8 +11,8 @@ using ProdutosApi.Infra.Contexto;
 namespace ProdutosApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260621145511_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260622201200_FirstCreate")]
+    partial class FirstCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

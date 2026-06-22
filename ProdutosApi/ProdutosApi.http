@@ -5,9 +5,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-        "Nome":"Porção de Batata",
-        "Descricao":"Porção de batata frita tipo palito",
-        "Preco":18.99,
+        "Nome":"X-Burguer",
+        "Descricao":"Pão de brioche hambuguer 130g molho da casa, ketchup e mostarda",
+        "Preco":25.99,
         "CategoriaId":1
 }
 ###

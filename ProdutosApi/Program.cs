@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using ProdutosApi.Infra.Contexto;
 using ProdutosApi.Infra.Repositories;
@@ -9,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("WorkConnection");
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -17,6 +18,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+
+builder.Services.AddMassTransit(busConfigurator => {
+    busConfigurator.UsingRabbitMq((busContext, rabbitCfg) =>
+    {
+        rabbitCfg.Host(builder.Configuration["RabbitMQ:HostName"], h =>
+        {
+            h.Username(builder.Configuration["RabbitMQ:UserName"]);
+            h.Password(builder.Configuration["RabbitMQ:Password"]);
+        });
+        
+    });
+});
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

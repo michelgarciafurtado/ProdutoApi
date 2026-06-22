@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit.RabbitMQ" Version="9.1.2" />
     <PackageReference Include="MediatR" Version="14.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.9" />
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="CQRS\Commands\DeletarProduto\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

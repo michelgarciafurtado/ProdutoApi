@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProdutosApi.CQRS.Commands.AtualizarProduto;
 using ProdutosApi.CQRS.Commands.CriarProduto;
+using ProdutosApi.CQRS.Commands.DeletarProduto;
 using ProdutosApi.CQRS.Queries.ObterProdutoPorId;
 using ProdutosApi.CQRS.Queries.ObterProdutos;
 using ProdutosApi.Publisher;
@@ -69,6 +70,14 @@ namespace ProdutosApi.Controllers
         {
             var resultado = await _mediator.Send(produto);
             if (resultado.Sucesso)
+                return Ok(resultado);
+            return BadRequest(resultado);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> ExcluirProdutoAsync(int id)
+        {
+            var resultado = await _mediator.Send(new DeleteProdutoCommand(id));
+            if (resultado)
                 return Ok(resultado);
             return BadRequest(resultado);
         }

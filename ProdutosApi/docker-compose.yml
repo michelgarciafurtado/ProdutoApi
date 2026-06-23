@@ -1,0 +1,25 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq_pedidos
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+
+  produtos-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: produtos_api
+    ports:
+      - "8080:8080"
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=host.docker.internal,1433;Database=PedidosBD;User Id=sa;Password=SuaSenhaForte123!;TrustServerCertificate=True;"
+      MassTransit__Host: "rabbitmq"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - rabbitmq

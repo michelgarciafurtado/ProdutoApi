@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using MassTransit.Transports;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,8 @@ namespace ProdutosApi.Controllers
     {
         private readonly ILogger<ProdutosController> _logger;
         private readonly IMediator _mediator;
+        //private readonly ISendEndpointProvider _sendEndpointProvider;
         private readonly IPublishEndpoint _publishEndpoint;
-
         public ProdutosController(ILogger<ProdutosController> logger, IMediator mediator, IPublishEndpoint publishEndpoint)
         {
             _logger = logger;
@@ -34,7 +35,20 @@ namespace ProdutosApi.Controllers
             };
 
             // Publicar evento de produto criado
-            await _publishEndpoint.Publish(new ProdutoCriadoEvento(command.Nome, command.Descricao, Convert.ToString(command.CategoriaId), command.Preco));
+            try
+            {
+                await _publishEndpoint.Publish<ProdutoCriadoEvento>(new ProdutoCriadoEvento(
+                               command.Nome,
+                               command.Descricao,
+                               Convert.ToString(command.CategoriaId),
+                               command.Preco
+                               ));
+            }
+            catch(Exception e)
+            {
+                _logger.LogError(e, "Erro ao publicar no rabbitMQ");
+            }
+            
 
             return Ok(resultado);
         }

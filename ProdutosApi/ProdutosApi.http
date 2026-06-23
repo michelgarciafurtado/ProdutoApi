@@ -1,4 +1,4 @@
-@ProdutosApi_HostAddress = http://localhost:5054
+@ProdutosApi_HostAddress = https://localhost:7018
 
 POST {{ProdutosApi_HostAddress}}/api/produtos
 Accept: application/json

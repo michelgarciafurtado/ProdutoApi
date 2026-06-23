@@ -5,9 +5,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-        "Nome":"X-Burguer",
-        "Descricao":"Pão de brioche hambuguer 130g molho da casa, ketchup e mostarda",
-        "Preco":25.99,
+        "Nome":"X-Tudo",
+        "Descricao":"Pão de brioche 2 hambuguer 130g Bacon, calabresa, ovo, queijo, molho da casa, ketchup e mostarda",
+        "Preco":60.99,
         "CategoriaId":1
 }
 ###
@@ -31,3 +31,7 @@ Content-Type: application/json
         "Preco":18.99,
         "CategoriaId":2
 }
+
+###
+DELETE {{ProdutosApi_HostAddress}}/api/produtos/5
+Accept: application/json

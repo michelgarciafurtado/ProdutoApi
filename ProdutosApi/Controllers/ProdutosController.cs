@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using Compartilhado.Eventos;
+using MassTransit;
 using MassTransit.Transports;
 using MediatR;
 using Microsoft.AspNetCore.Http;

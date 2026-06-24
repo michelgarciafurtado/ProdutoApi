@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using Compartilhado.Eventos;
+using MassTransit;
 
 namespace ProdutosApi.Publisher
 {

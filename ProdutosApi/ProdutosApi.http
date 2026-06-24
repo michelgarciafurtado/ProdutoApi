@@ -5,10 +5,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-        "Nome":"X-Tudo",
-        "Descricao":"Pão de brioche 2 hambuguer 130g Bacon, calabresa, ovo, queijo, molho da casa, ketchup e mostarda",
-        "Preco":60.99,
-        "CategoriaId":1
+        "Nome":"Onion Rings",
+        "Descricao":"350 gde aneis de cebola",
+        "Preco":34.99,
+        "CategoriaId":2
 }
 ###
 GET {{ProdutosApi_HostAddress}}/api/produtos

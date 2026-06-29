@@ -5,9 +5,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-        "Nome":"Onion Rings",
-        "Descricao":"350 gde aneis de cebola",
-        "Preco":34.99,
+        "Nome":"Calabresa acebolada",
+        "Descricao":"550 gr calabresa de priemira qualidade",
+        "Preco":53.99,
         "CategoriaId":2
 }
 ###

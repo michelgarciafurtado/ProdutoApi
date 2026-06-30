@@ -1,6 +1,6 @@
 ﻿using ProdutosApi.CQRS.Queries;
 
-namespace ProdutosApi.Consumer
+namespace Compartilhado.Eventos
 {
     public record ObterProdutosResponse(IEnumerable<ProdutoObtido> Produtos);
    

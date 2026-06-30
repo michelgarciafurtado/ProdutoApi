@@ -5,10 +5,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-        "Nome":"Calabresa acebolada",
-        "Descricao":"550 gr calabresa de priemira qualidade",
-        "Preco":53.99,
-        "CategoriaId":2
+        "Nome":"Original 600ml",
+        "Descricao":"Cerveja Original garrafa 600ml",
+        "Preco":18.00,
+        "CategoriaId":3
 }
 ###
 GET {{ProdutosApi_HostAddress}}/api/produtos
@@ -33,5 +33,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{ProdutosApi_HostAddress}}/api/produtos/5
+DELETE {{ProdutosApi_HostAddress}}/api/produtos/40
 Accept: application/json

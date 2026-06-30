@@ -1,5 +1,6 @@
 ﻿using MediatR;
+using ProdutosApi.CQRS.Queries;
 
-namespace ProdutosApi.CQRS.Queries.ObterProdutos;
+namespace Compartilhado.Eventos;
 
 public record ObterTodosProdutosQuery():IRequest<IEnumerable<ProdutoObtido>>;

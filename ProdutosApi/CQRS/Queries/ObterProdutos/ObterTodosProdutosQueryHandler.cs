@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Compartilhado.Eventos;
+using MediatR;
 using ProdutosApi.Models.Interfaces;
 
 namespace ProdutosApi.CQRS.Queries.ObterProdutos

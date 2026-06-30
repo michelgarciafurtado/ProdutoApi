@@ -1,10 +1,10 @@
 using Compartilhado.Eventos;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using ProdutosApi.Consumer;
 using ProdutosApi.Infra.Contexto;
 using ProdutosApi.Infra.Repositories;
 using ProdutosApi.Models.Interfaces;
-using ProdutosApi.Publisher;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
-var connectionString = builder.Configuration.GetConnectionString("WorkConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -22,7 +22,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddMassTransit(busConfigurator =>
 {
-    
+    busConfigurator.AddConsumer<ObterProdutosConsumer>();
+
     busConfigurator.UsingRabbitMq((busContext, rabbitCfg) =>
     {
         rabbitCfg.Message<ProdutoCriadoEvento>(x => x.SetEntityName("produto_criado_event"));
@@ -32,9 +33,13 @@ builder.Services.AddMassTransit(busConfigurator =>
             h.Password(builder.Configuration["RabbitMQ:Password"] ?? "guest");
         });
 
+        rabbitCfg.ReceiveEndpoint("fila_obter_produtos", e =>
+        {
+            e.ConfigureConsumer<ObterProdutosConsumer>(busContext);
+        });
+
     });
 });
-
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

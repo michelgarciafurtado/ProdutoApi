@@ -9,7 +9,6 @@ using ProdutosApi.CQRS.Commands.CriarProduto;
 using ProdutosApi.CQRS.Commands.DeletarProduto;
 using ProdutosApi.CQRS.Queries.ObterProdutoPorId;
 using ProdutosApi.CQRS.Queries.ObterProdutos;
-using ProdutosApi.Publisher;
 
 namespace ProdutosApi.Controllers
 {
@@ -19,6 +18,7 @@ namespace ProdutosApi.Controllers
     {
         private readonly ILogger<ProdutosController> _logger;
         private readonly IMediator _mediator;
+
         //private readonly ISendEndpointProvider _sendEndpointProvider;
         private readonly IPublishEndpoint _publishEndpoint;
         public ProdutosController(ILogger<ProdutosController> logger, IMediator mediator, IPublishEndpoint publishEndpoint)
@@ -40,9 +40,10 @@ namespace ProdutosApi.Controllers
             try
             {
                 await _publishEndpoint.Publish<ProdutoCriadoEvento>(new ProdutoCriadoEvento(
-                               command.Nome,
-                               command.Descricao,
-                               Convert.ToString(command.CategoriaId),
+                               resultado.Produto.Id,
+                               resultado.Produto.Nome,
+                               resultado.Produto.Descricao,
+                               resultado.Produto.categoria.nome,
                                command.Preco
                                ));
             }

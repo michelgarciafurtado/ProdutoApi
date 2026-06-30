@@ -25,10 +25,10 @@ namespace ProdutosApi.CQRS.Commands.CriarProduto
             if (produto != null) 
             {
                 _logger.LogInformation("Produto criado com sucesso: {ProdutoId}, em {Data}", produto.Id, DateTime.UtcNow);
-                return new ProdutoCriado(produto.Id, produto.Nome, true, "Produto criado com sucesso.");
+                return new ProdutoCriado("Produto criado com sucesso.", true, produto);
 
             }
-            return new ProdutoCriado(0, "Erro",false,"Erro ao criar produto.");
+            return new ProdutoCriado("Erro ao criar produto.", false, null);
         }
     }
 }

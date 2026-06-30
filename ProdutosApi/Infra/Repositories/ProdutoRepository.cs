@@ -24,7 +24,9 @@ namespace ProdutosApi.Infra.Repositories
         {
             _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
-            return produto;
+            return _context.Produtos
+                    .Include(p => p.categoria)
+                    .FirstOrDefault(p => p.Id == produto.Id)!;
         }
 
         async Task<bool> IProdutoRepository.DeletarProdutoAsync(int id)

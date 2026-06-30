@@ -22,7 +22,7 @@ namespace ProdutosApi.Consumer
         {
             _logger.LogInformation("Consumindo requisição de obter produtos.");
             var produtos = await _mediator.Send(new ObterTodosProdutosQuery());
-            await context.RespondAsync<ObterProdutosConsumer>(new ObterProdutosResponse(produtos));
+            await context.RespondAsync<ObterProdutosResponse>(new ObterProdutosResponse(produtos));
         }
     }
 }

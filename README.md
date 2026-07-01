@@ -1,8 +1,21 @@
-## Cenário Proposto
+## Estudo de Caso
 
-🖼️ - Um cardapioOnline que é alimentado por uma API de Produtos com comunicação assíncrona uasndo RabbitMQ implementada através de MassTransit. O CardapioOnline não tem banco de dados, os produtos ficam somente em memoria, o Banco de dados SQLServer é acessado somente por ProdutosAPI que realiza um Crud básico no banco.
+## 📝 - Briefing
 
-#### 🎯 **- Objetivos**
+Realizar um estudo de caso que demonstre comunicação assincrona com RabbitMQ, .Net, Banco de dados e requisições temporizadas.
+
+📋 **- Objetivos didáticos**
+
+1. Demonstrar a configuração de Publisher/Consumer(com fila especifica);
+2. Demonstrar como fazer o bind por nome de entidade;
+3. Demonstrar a utilização de IHostedService para realização de tarefas sem interação do usuário quando o sistema é startado;
+4. Demonstrar a utilização de BackGroundService para realização de tarefas temporaizadas
+
+## 🖼️ - Cenário Proposto
+
+Um cardapioOnline que é alimentado por uma API de Produtos com comunicação assíncrona uasndo RabbitMQ implementada através de MassTransit. O CardapioOnline não tem banco de dados, os produtos ficam somente em memoria, o Banco de dados SQLServer é acessado somente por ProdutosAPI que realiza um Crud básico no banco.
+
+## 🎯 **- Objetivos Técnicos**
 
 1. Realizar comunicação assincrona de maneira **ativa** entre publisher/consumer quando do evento de criação de um produto;
 2. Realizar comunicação assincrona de maneira **passiva** entre publisher/consumer atraves de request quando do evento de subir aplicação;

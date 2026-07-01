@@ -5,9 +5,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-        "Nome":"Original 600ml",
-        "Descricao":"Cerveja Original garrafa 600ml",
-        "Preco":18.00,
+        "Nome":"Heinecken 600ml",
+        "Descricao":"Cerveja Heinecken garrafa 600ml",
+        "Preco":21.00,
         "CategoriaId":3
 }
 ###

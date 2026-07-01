@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
-var connectionString = builder.Configuration.GetConnectionString("WorkConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

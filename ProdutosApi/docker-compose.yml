@@ -1,13 +1,15 @@
+version: "3.9"
 services:
-  rabbitmq:
-    image: rabbitmq:4-management
-    container_name: rabbitmq_pedidos
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_produtos
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "1433:1433"
     environment:
-      RABBITMQ_DEFAULT_USER: "guest"
-      RABBITMQ_DEFAULT_PASS: "guest"
+      SA_PASSWORD: ${SA_PASSWORD}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sql_data:/var/opt/mssql
 
   produtos-api:
     build:
@@ -17,9 +19,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      ConnectionStrings__DefaultConnection: "Server=host.docker.internal,1433;Database=PedidosBD;User Id=sa;Password=SuaSenhaForte123!;TrustServerCertificate=True;"
-      MassTransit__Host: "rabbitmq"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      ConnectionStrings__DefaultConnection: "Server=${DB_HOST},1433;Database=${DB_NAME};User Id=${DB_USER};Password=${SA_PASSWORD};TrustServerCertificate=True;"
+      MassTransit__Host: "rabbitmq"   # RabbitMQ externo
     depends_on:
-      - rabbitmq
+      - sqlserver
+
+volumes:
+  sql_data:

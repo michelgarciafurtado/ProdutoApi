@@ -9,12 +9,8 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-
-# COPIA DIRETAMENTE O ARQUIVO DO PROJETO NA PASTA ATUAL DO COMPILADOR
 COPY ["ProdutosApi.csproj", "./"]
 RUN dotnet restore "./ProdutosApi.csproj"
-
-# COPIA O RESTANTE DOS ARQUIVOS E COMPILA
 COPY . .
 RUN dotnet build "ProdutosApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
